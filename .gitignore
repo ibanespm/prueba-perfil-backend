@@ -1,0 +1,5 @@
+/venv/
+venv/
+/proyect/docker-compose.yml
+mysql_data/
+phpmyadmin_data/
