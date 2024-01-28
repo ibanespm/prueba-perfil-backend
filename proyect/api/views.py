@@ -66,15 +66,45 @@ class ElementView(View):
         except Exception as e:
             print(f' error: {e}')
 
-
     def put(self, request, id):
+        try:
+                    json_data = json.loads(request.body) # capturar el elemento del body
+                    elements =  list(Element.objects.filter(id=id).values()) #serch element for update
+                    
+                    if len(elements) > 0:
+                                element = Element.objects.get(id = id)
+                                element.name = json_data['name']
+                                element.country = json_data['country']
+                                element.email = json_data['email']
+                                
+                                element.save()
+                                data = {'message':"Update Success..!!"}
+                    else:
+                                data = {'message': "Elements not found ..!!"}
+                    return JsonResponse(data)
+        
+        except Exception as e:
+            print(f'Error: {e}')
 
-        json_data =  list(Element.objects.filter(id=id).values())
+
+    def delete(self, request, id):
+            
+            try:
+                    elements = list(Element.objects.filter(id =id).values())
+
+                    if len(elements) > 0:
+                            Element.objects.filter(id = id ).delete()
+                            data = {'message': "success - deleted element "}
+                            
+                    else:
+                            data = {'message':"Element not found..!!!"}            
+                    
+                    return JsonResponse(data)
 
 
-    def delete(self, request):
-        pass 
-
+            except Exception as e:
+                    print(f'Error: {e}')
+            
 
 
 

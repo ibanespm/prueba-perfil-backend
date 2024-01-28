@@ -80,11 +80,8 @@ DATABASES = {
         'NAME': 'database-mysql',
         'USER':'root',
         'PASSWORD':'123456',
-        'HOST':'localhost',  #usamos el nombre de docker compose
-        'PORT':'3306',
-        # 'OPTIONS':{
-        #     'init_command': "SET sql_mode='STRIC_TRANS_TABLES'"
-        # }
+        'HOST':'localhost',  
+        'PORT':'3306'
     }
 }
 
